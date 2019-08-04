@@ -1,17 +1,23 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { QuotesService } from '../services/quotes.service';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+
+import { CreateMessageDto } from './dto/create-message.dto';
+import { MessagesService } from './messages.service';
 
 @Controller('messages')
 export class MessagesController {
-    constructor(private quotesService: QuotesService) {}
+
+    constructor(private messagesService: MessagesService){
+
+    }
+
+    @Post()
+    async createMessage(@Body() message: CreateMessageDto){
+        return await this.messagesService.createMessage(message);
+    }
 
     @Get()
-    getMessages() {
-        return this.quotesService.getQuotes();
+    async getMessages(){
+        return await this.messagesService.getMessages();
     }
 
-    @Get(':id')
-    getMessage(@Param('id') id) {
-        return this.quotesService.getQuote(id);
-    }
 }
