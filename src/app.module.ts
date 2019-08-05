@@ -6,8 +6,6 @@ import { AppService } from './app.service';
 import { ContactsModule } from './contacts/contacts.module';
 import { PostsModule } from './posts/posts.module';
 import { MessagesModule } from './messages/messages.module';
-import { QuotesService } from './services/quotes.service';
-
 
 
 @Module({
@@ -19,6 +17,6 @@ import { QuotesService } from './services/quotes.service';
         MessagesModule
     ],
     controllers: [AppController],
-    providers: [AppService, QuotesService],
+    providers: [AppService],
 })
 export class AppModule {}
